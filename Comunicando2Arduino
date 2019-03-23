@@ -1,0 +1,45 @@
+//arduino 1 que envia
+#define tempo 2000
+
+
+void setup() {
+  Serial.begin(9600);
+  
+}
+
+void loop() {
+  Serial.write('A');
+  delay(tempo);
+
+  Serial.write('a');
+  delay(tempo);
+
+}
+
+//Arduino 2 que recebe
+
+#define led 9
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+  digitalWrite(led,LOW);
+
+   
+}
+
+void loop() {
+  if(Serial.available()>0){
+   char valorRecebido =Serial.read();
+     if( valorRecebido == 'A'){
+       digitalWrite(led, HIGH);
+      
+   
+      }
+   if (valorRecebido == 'a'){
+        digitalWrite(led, LOW);
+        
+   }
+  }
+}
